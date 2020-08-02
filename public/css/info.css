@@ -204,3 +204,11 @@ input[type="radio"] {
     margin-right: 2%;
     margin-left: 3%;
 }
+
+#camposAlumno,
+#camposMaestro {
+    display: none;
+}
+
+
+}

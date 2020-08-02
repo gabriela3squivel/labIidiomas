@@ -1,0 +1,75 @@
+#bg-header {
+    margin-top: 4%;
+}
+
+label {
+    margin: 5%;
+}
+
+#formProfile label {
+    margin-top: 5%;
+    margin-left: 1%;
+    margin-right: 0;
+}
+
+#fotoperfil {
+    background-color: rgba(130, 233, 233, 0.774);
+    border: 10%;
+}
+
+#portada {
+    background-color: rgba(66, 214, 214, 0.842);
+    color: white;
+}
+
+#portada .row {
+    height: 2%;
+}
+
+#informacionUser {
+    margin-left: 3.5%;
+}
+
+#iconUser {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    font-size: 50%;
+}
+
+#icon,
+#iconUser {
+    color: rgba(228, 56, 56, 0.842);
+}
+
+#icon:hover {
+    color: red;
+    font-size: 120%;
+}
+
+#iconUser:hover {
+    font-size: 100%;
+}
+
+#formVistaProfesional,
+#formVistaAcademica {
+    padding-top: 5%;
+    display: none;
+}
+
+#formProfile {
+    padding: 0;
+    display: none;
+}
+
+#formGroup {
+    padding: 0;
+}
+
+#campo {
+    padding-top: 5%;
+}
+
+.campos {
+    margin-top: 5%;
+}

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -43,36 +46,74 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array  $request
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $request)
     {
-        return Validator::make($data, [
+        return Validator::make($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'tipo' =>['required'],
+            'ap_paterno' => ['required', 'string'],
+            'ap_materno'=>['required','string'],
+
         ]);
     }
+
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array  $request
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $request)
     {   
+
         $tipo=0;
-        if($data['tipo']=='maestro'){
+        if($request['tipo']=='maestro'){
             $tipo=1;
         }
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'name' => $request['name'],
+            'ap_paterno' => $request['paterno'],
+            'ap_materno' => $request['materno'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
             'tipo' => $tipo,
         ]);
+
+        if($tipo==1){
+            Profesor::create([
+                'user' => $user->id, 
+                'nivelEstudios'=> $data['nivelEstudios'],
+                'IdiomaImparte'=> $data['idioma'],
+                'nivelesIdioma'=> $data['nivelImparte'], 
+                'aniosExp'=> $data['aniosExp'],
+                'telefono'=> $data['telefono'],
+                ]);
+        }else{
+            Alumno::create([
+                'user' => $user->id,
+                'curp' => $request['curp'],
+                'nivel' =>$request['nivel'],
+                'grado' =>$request['grado'],
+                'grupo' =>$request['grupo'],
+            ]);
+        }
+
+        return $user;
+    }
+
+    public function register(Request $request){
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        return $this->registered($request, $user)
+           ?: redirect($this->redirectPath());
+         //return "hola";
     }
 }

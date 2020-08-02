@@ -29,9 +29,115 @@ function openInfo(evt, infoName) {
     evt.currentTarget.className += " active";
 }
 
-// Creado por Vku.
-// http://loseasi.blogspot.com/
-function cambiarvideo(url) {
-    document.getElementById('videogaleria').innerHTML = '<object width="425" height="344"><param name="movie" value="' + url + '?fs=1&amp;hl=es_ES&amp;rel=0&amp;autoplay=1"/><param value="true" name="allowFullScreen"/><param value="always" name="allowscriptaccess"/><param value="transparent" name="wmode"/><embed width="425" height="344" wmode="transparent" allowfullscreen="true" allowscriptaccess="always" type="application/x-shockwave-flash" src="' + url + '?fs=1&amp;hl=es_ES&amp;rel=0&amp;autoplay=1"/></object>';
-    return false;
+function camposMaestro() {
+    document.getElementById('camposAlumno').style.display = "none";
+    document.getElementById('camposMaestro').style.display = "block";
+
+}
+
+function camposAlumno() {
+    document.getElementById('camposMaestro').style.display = "none";
+    document.getElementById('camposAlumno').style.display = "block";
+
+}
+
+function editarCampos() {
+    var btn = document.getElementById('maestro');
+    if (btn.checked) {
+        //Profesor
+        document.getElementById('telefono'), required = "true";
+        document.getElementById('anios'), required = "true";
+        document.getElementById('nivelImparte'), required = "true";
+        document.getElementById('idioma'), required = "true";
+        document.getElementById('nivelEstudios'), required = "true";
+        //Estudiante
+        document.getElementById('curp'), required = "false";
+        document.getElementById('nivel'), required = "false";
+        document.getElementById('grado'), required = "false";
+        document.getElementById('grupo'), required = "false";
+
+        camposMaestro()
+    } else {
+        //Profesor
+        document.getElementById('telefono'), required = "false";
+        document.getElementById('anios'), required = "false";
+        document.getElementById('nivelImparte'), required = "falsee";
+        document.getElementById('idioma'), required = "false";
+        document.getElementById('nivelEstudios'), required = "false";
+        //Estudiante
+        camposAlumno();
+        document.getElementById('curp'), required = "true";
+        document.getElementById('nivel'), required = "true";
+        document.getElementById('grado'), required = "true";
+        document.getElementById('grupo'), required = "true";
+
+
+    }
+}
+
+function esMaestro() {
+    document.getElementById("ActReciente").style.display = "none";
+    document.getElementById("formVistaProfesional").style.display = "block";
+
+
+    document.getElementById('telefono'), required = "true";
+    document.getElementById('anios'), required = "true";
+    document.getElementById('nivelImparte'), required = "true";
+    document.getElementById('idioma'), required = "true";
+    document.getElementById('nivelEstudios'), required = "true";
+    //Estudiante/** 
+    //document.getElementById('curp'), required = "false";
+    //document.getElementById('nivel'), required = "false";
+    //document.getElementById('grado'), required = "false";
+    //document.getElementById('grupo'), required = "false";
+}
+
+function esEstudiante() {
+    document.getElementById("ActReciente").style.display = "none";
+    document.getElementById("formVistaAcademica").style.display = "block";
+
+
+}
+
+function editProfileInfo() {
+    document.getElementById('info-personal').style.display = "none";
+    document.getElementById("formProfile").style.display = "block";
+
+}
+
+function cancelarEditProfile() {
+    document.getElementById("formProfile").style.display = "none";
+    document.getElementById("info-personal").style.display = "block";
+}
+
+function cancelarActProfesional() {
+    document.getElementById("formVistaProfesional").style.display = "none";
+    document.getElementById("ActReciente").style.display = "block";
+
+
+    document.getElementById('telefono'), required = "false";
+    document.getElementById('anios'), required = "false";
+    document.getElementById('nivelImparte'), required = "false";
+    document.getElementById('idioma'), required = "false";
+    document.getElementById('nivelEstudios'), required = "false";
+
+
+}
+
+function tipoCarga() {
+    var btn = document.getElementById('enlace');
+    if (btn.checked) {
+        document.getElementById('inputEnlace'), required = "true";
+        document.getElementById('customFile'), required = "false";
+
+        document.getElementById('cargarEnlace').style.display = "block";
+        document.getElementById('cargarArchivo').style.display = "none";
+    } else {
+        document.getElementById('inputEnlace'), required = "false";
+        document.getElementById('customFile'), required = "true";
+
+        document.getElementById('cargarEnlace').style.display = "none";
+        document.getElementById('cargarArchivo').style.display = "block";
+
+    }
 }

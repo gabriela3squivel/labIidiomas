@@ -62,16 +62,16 @@
 
             </p>
             <div class="row">
-        <form action="POST" id="contactoFrm">
+        <form method="POST" action="{{route('email.contacto')}}" id="contactoFrm">
             @csrf
             <div class="form-group">
                 <div class="row">
 
                     <div class="col-md-4">
-                        <label for="nombre">Nombre completo: </label>
+                        <label for="nombre">Email: </label>
                     </div>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" placeholder="Tu nombre completo" id="nombre" required>
+                        <input type="email" class="form-control" placeholder="Tuemail@example.com" name="email" required>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                         <label for="a">Asunto:</label>
                     </div>
                     <div class="col-md-5">
-                        <input type="text" class="form-control" placeholder="Asunto del correo" id="asunto" required>
+                        <input type="text" class="form-control" placeholder="Asunto del correo" name="subject" required>
 
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="col-md-5">
-                        <textarea id="w3review" name="w3review" rows="4" cols="50" class="form-control"></textarea>
+                        <textarea id="descripcion" name="content" rows="4" cols="50" class="form-control"></textarea>
                     </div>
                 </div>
             </div>

@@ -38,3 +38,7 @@ a {
 .post-footer-comment-wrapper {
     background-color: #F6F7F8;
 }
+
+#cargarArchivo {
+    display: none;
+}
